@@ -25,6 +25,7 @@ public class ShizukuSettings {
     public static final String NIGHT_MODE = "night_mode";
     public static final String LANGUAGE = "language";
     public static final String KEEP_START_ON_BOOT = "start_on_boot";
+    public static final String AUTO_ALLOWED = "auto_allowed"; // 自动允许授权申请
 
     private static SharedPreferences sPreferences;
 
@@ -60,6 +61,9 @@ public class ShizukuSettings {
         if (sPreferences == null) {
             sPreferences = getSettingsStorageContext(context)
                     .getSharedPreferences(NAME, Context.MODE_PRIVATE);
+            if (!sPreferences.contains(AUTO_ALLOWED)) {
+                sPreferences.edit().putBoolean(AUTO_ALLOWED, true).apply();
+            }
         }
     }
 
@@ -99,5 +103,9 @@ public class ShizukuSettings {
             return Locale.getDefault();
         }
         return Locale.forLanguageTag(tag);
+    }
+
+    public static boolean autoAllowedPermission() {
+        return getPreferences().getBoolean(AUTO_ALLOWED, false);
     }
 }

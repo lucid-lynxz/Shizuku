@@ -10,6 +10,10 @@
             android:summary="@string/settings_start_on_boot_summary"
             android:title="@string/settings_start_on_boot" />
 
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="auto_allowed"
+            android:summary="app申请shizuku权限时,自动允许"
+            android:title="自动允许权限" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_language">

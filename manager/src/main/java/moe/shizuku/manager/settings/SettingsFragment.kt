@@ -43,6 +43,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var translationPreference: Preference
     private lateinit var translationContributorsPreference: Preference
     private lateinit var useSystemColorPreference: TwoStatePreference
+    private lateinit var autoAllowPermission: TwoStatePreference
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         val context = requireContext()
@@ -60,6 +61,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         translationPreference = findPreference("translation")!!
         translationContributorsPreference = findPreference("translation_contributors")!!
         useSystemColorPreference = findPreference(KEY_USE_SYSTEM_COLOR)!!
+        autoAllowPermission = findPreference(ShizukuSettings.AUTO_ALLOWED)!!
+        autoAllowPermission.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, value: Any? -> true }
 
         val componentName = ComponentName(context.packageName, BootCompleteReceiver::class.java.name)
 
